@@ -23,7 +23,7 @@ import java.util.HashMap;
  */
 public class LoginPresenter implements ILoginPresenter {
     String username,password;
-
+    String url="http://api.v1.heallify.com/account/login";
     boolean savelogin;
     AppData appData;
     ServerData serverData;//
@@ -53,7 +53,7 @@ public class LoginPresenter implements ILoginPresenter {
         serverData.APICallLogin(map);
 
 
-        CustomVolleyRequest jsonObjectRequest = new CustomVolleyRequest(Request.Method.POST,"http://api.v1.heallify.com/account/login",map,
+        CustomVolleyRequest jsonObjectRequest = new CustomVolleyRequest(Request.Method.POST,url,map,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
