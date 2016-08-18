@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="138dp"
+        style="@style/CustomText"
+        android:layout_height="wrap_content"
+        android:text="Email-id"
+        android:id="@+id/textView"
+        android:textSize="30dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        style="@style/CustomText"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/editText"
+
+        android:layout_gravity="right" />
+
+    <TextView
+        android:layout_width="140dp"
+        style="@style/CustomText"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:id="@+id/textView2"
+        android:textSize="30dp"
+        android:layout_weight="0." />
+
+    <EditText
+        android:layout_width="match_parent"
+        style="@style/CustomText"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+
+        android:id="@+id/editText2" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember Me"
+        android:id="@+id/checkBox" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/button"
+        android:drawable="@drawable/button_enabled"
+        android:text="Login"
+        android:id="@+id/button" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawable="@drawable/button_focused"
+        android:text="Sample"
+        android:id="@+id/button1" />
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="loginMVP" parent="android:Theme">
+        <item name="android:button">@style/button</item>
+    </style>
+<!--    <style name="CustomText" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#999</item>
+    </style>-->
+</resources>
