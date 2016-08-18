@@ -2,8 +2,6 @@ package com.example.fenix_ii.loginmvp.login.presenter;
 
 
 
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,17 +28,17 @@ public class LoginPresenter implements ILoginPresenter {
     private ILoginView view;
 
     public boolean checkEmailIsEmpty(String email){
-        if(email.isEmpty())
-            return false;
-        else
+        if(!email.isEmpty())
             return true;
+        else
+            return false;
 
     }
     public boolean checkPasswdIsEmpty(String pass){
-        if(pass.isEmpty())
-            return false;
-        else
+        if(!pass.isEmpty())
             return true;
+        else
+            return false;
 
     }
 
