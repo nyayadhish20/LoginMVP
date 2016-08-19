@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.fenix_ii.loginmvp.R;
 import com.example.fenix_ii.loginmvp.data.AppData;
 import com.example.fenix_ii.loginmvp.data.ServerData;
+import com.example.fenix_ii.loginmvp.login.model.User;
 import com.example.fenix_ii.loginmvp.login.presenter.LoginPresenter;
 import com.example.fenix_ii.loginmvp.login.view.ILoginView;
 import com.example.fenix_ii.loginmvp.login.view.Result;
@@ -97,13 +98,21 @@ public class Login extends AppCompatActivity implements ILoginView {
     }
 
     @Override
-    public void onLoggedInSucces(String id, String firstName, String lastName) {
+    public void onLoggedInSucces(User data) {
         Toast.makeText(Login.this, "Success Fully ", Toast.LENGTH_SHORT).show();
         Intent intent =new Intent(this ,Result.class);
-                                intent.putExtra("id",id);
-                                intent.putExtra("firstName",firstName);
-                                intent.putExtra("lastName",lastName);
+                                intent.putExtra("id",data.getId());
+                                intent.putExtra("firstName",data.getFirst_name());
+                                intent.putExtra("lastName",data.getLast_name());
+                                intent.putExtra("Gender",data.getGender());
+                                intent.putExtra("Mobile",data.getMobile());
+                                intent.putExtra("DateOfBirth",data.getDate_of_birth());
                                 startActivity(intent);
+    }
+
+    @Override
+    public void showDetails(User data) {
+
     }
 
     @Override

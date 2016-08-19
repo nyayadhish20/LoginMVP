@@ -8,7 +8,9 @@ import com.android.volley.VolleyError;
 import com.example.fenix_ii.loginmvp.data.AppData;
 import com.example.fenix_ii.loginmvp.data.CustomVolleyRequest;
 import com.example.fenix_ii.loginmvp.data.ServerData;
+import com.example.fenix_ii.loginmvp.login.model.User;
 import com.example.fenix_ii.loginmvp.login.view.ILoginView;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -59,11 +61,9 @@ public class LoginPresenter implements ILoginPresenter {
                             String success = response.getString("success");
                             if(success.equals("1")){
                                 JSONObject data = response.getJSONObject("data");
-                                String id = data.getString("id");
-                                String first_name = data.getString("first_name");
-                                String last_name= data.getString("last_name");
-
-                                view.onLoggedInSucces(id, first_name, last_name);
+                                User user = new Gson().fromJson(data.toString(),User.class);
+                                view.onLoggedInSucces(user);
+                                view.showDetails(user);
 
 
                             }else{
@@ -89,6 +89,9 @@ public class LoginPresenter implements ILoginPresenter {
         serverData.addToRequestQueue(jsonObjectRequest);
     }
 
+    public void showDetails(){
+
+    }
     @Override
     public String getSavedEmail() {
          return appData.getSavedEmail();
