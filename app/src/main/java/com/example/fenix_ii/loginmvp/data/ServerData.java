@@ -20,24 +20,28 @@ public class ServerData {
     public static final String TAG = ServerData.class.getSimpleName();
     private String url="http://api.v1.heallify.com/account/login";
     private RequestQueue requestQueue;
-    private Context context;
+    private static Context context;
     public String first_name,last_name,id;
 
     public static ServerData serverData;
+
     Result resultObject = new Result(context);
-    public ServerData(Context context){
+
+
+
+
+    private ServerData(Context context){
           this.context=context;
     }
-    public ServerData(){}
-/*  *//*  public static synchronized ServerData getServerDataInstance() {
-        return serverDataInstance;
-    }
-*/  public static  ServerData getInstance(){
+
+
+    public static  ServerData getServerData(){
     return serverData;
         }
-    public static void init(){
+
+    public static void init(Context context){
         if(serverData==null){
-            serverData=new ServerData();
+            serverData=new ServerData(context);
         }
     }
     public RequestQueue getRequestQueue() {

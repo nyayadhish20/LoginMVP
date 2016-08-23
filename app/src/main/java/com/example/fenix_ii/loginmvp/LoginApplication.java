@@ -6,9 +6,7 @@ import com.example.fenix_ii.loginmvp.data.ServerData;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
-/*application => context
-    LoginActivity => context
-    DoosreActivities => context*/
+
     /**
      * Created by fenix-ii on 19/8/16.
      */
@@ -29,7 +27,7 @@ import io.realm.RealmConfiguration;
 
         private void initialize() {
             appData.init(this);
-            serverData.init();
+            serverData.init(this);
         }
 
 

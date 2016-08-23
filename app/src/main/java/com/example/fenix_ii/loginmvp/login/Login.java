@@ -33,7 +33,7 @@ public class Login extends AppCompatActivity implements ILoginView {
     @BindView(R.id.editText2) EditText boxPassword;
     @BindView(R.id.button)Button click;
     @BindView(R.id.checkBox)CheckBox chksave;
-    private LoginPresenter mPresenter;
+    private LoginPresenter mPresenter = new LoginPresenter(this);
     private String user, pass;
     private HashMap<String,String> credentials;
 
@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity implements ILoginView {
         ButterKnife.bind(this);
         credentials= new HashMap<>();
 
-        Realm realm = Realm.getInstance(new RealmConfiguration.Builder(this).build());
+        Realm realm = Realm.getDefaultInstance();
         User user = realm.where(User.class).findFirst();
         if(user!=null){
             Intent intent =new Intent(this ,Result.class);
@@ -56,7 +56,7 @@ public class Login extends AppCompatActivity implements ILoginView {
             intent.putExtra("DateOfBirth",user.getDate_of_birth());
             startActivity(intent);
         }else{
-            mPresenter = new LoginPresenter(new AppData(this),new ServerData(this),this);
+            //mPresenter = new LoginPresenter(this);
             if (mPresenter.wasRememberMeChecked()) {
                 boxEmailAddres.setText(mPresenter.getSavedEmail());
                 boxPassword.setText(mPresenter.getSavedPassword());
@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity implements ILoginView {
         credentials.put("email",user);
         credentials.put("password",pass);
 
-
+        //mPresenter = new LoginPresenter(this);
         if (mPresenter.checkEmailIsEmpty(user)) {
                     if(mPresenter.checkPasswdIsEmpty(pass)){
                         if (chksave.isChecked()) {
@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity implements ILoginView {
 
     @Override
     public void showDetails(User data) {
+
 
     }
 

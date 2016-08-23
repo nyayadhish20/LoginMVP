@@ -30,8 +30,8 @@ public class LoginPresenter implements ILoginPresenter {
     String username,password;
     String url="http://api.v1.heallify.com/account/login";
     boolean savelogin;
-    AppData appData;
-    ServerData serverData = new ServerData();
+    //AppData appData;
+    //ServerData serverData = new ServerData();
     private ILoginView view;
     RealmConfiguration realmConfig;
 
@@ -57,7 +57,7 @@ public class LoginPresenter implements ILoginPresenter {
         HashMap<String, String> map = new HashMap<>();
         map.put("email",email);
         map.put("password",passwd);
-        serverData.APICallLogin(map);
+        ServerData.getServerData().APICallLogin(map);
         // appData.init();
 
         CustomVolleyRequest jsonObjectRequest = new CustomVolleyRequest(Request.Method.POST,url,map,
@@ -94,20 +94,14 @@ public class LoginPresenter implements ILoginPresenter {
                     }
                 }
         );
-        serverData.addToRequestQueue(jsonObjectRequest);
+        ServerData.getServerData().addToRequestQueue(jsonObjectRequest);
     }
     public void createRealmObject(JSONObject userJSONOBject){
 
-        /*realmConfig = new RealmConfiguration().Builder(this).build();
-        Realm.setDefaultConfiguration(realmConfig);
-        Realm realm = Realm.getDefaultInstance();*/
-        Realm realm = Realm.getInstance(new RealmConfiguration.Builder(this).build());
-
+        Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        //User u = realm.createObject(User.class);
         realm.createObjectFromJson(User.class,userJSONOBject);
         realm.commitTransaction();
-
         realm.beginTransaction();
         view.onFailToLogin(realm.where(User.class).findFirst().toString());
         realm.commitTransaction();
@@ -119,40 +113,40 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public String getSavedEmail() {
-        return appData.getSavedEmail();
+        return AppData.getAppData().getSavedEmail();
     }
 
     @Override
     public String getSavedPassword() {
-        return appData.getSavedPassword();
+        return AppData.getAppData().getSavedPassword();
     }
 
     @Override
     public void saveEmail(String email) {
-        appData.saveEmail(email);
+        AppData.getAppData().saveEmail(email);
     }
 
     @Override
     public void savePassword(String password) {
-        appData.savePassword(password);
+        AppData.getAppData().savePassword(password);
     }
 
     @Override
     public Boolean wasRememberMeChecked() {
-        return appData.getRememberMe();
+        return AppData.getAppData().getRememberMe();
     }
 
     public void ifChecked(){
-        appData.setRememberMe();
+        AppData.getAppData().setRememberMe();
     }
     public void ifNotChecked(){
-        appData.unsetRememberMe();
+        AppData.getAppData().unsetRememberMe();
     }
 
 
-    public LoginPresenter(AppData appData, ServerData serverData, ILoginView view) {
-        this.serverData = serverData;
-        this.appData = AppData.getAppData();
+    public LoginPresenter(ILoginView view) {
+        ServerData.getServerData();
+        AppData.getAppData();
         this.view = view;
 
     }

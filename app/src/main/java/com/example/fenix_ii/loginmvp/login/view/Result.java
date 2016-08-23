@@ -27,12 +27,14 @@ public class Result extends AppCompatActivity implements ILoginView {
 
         result=(TextView) findViewById(R.id.textView3);
         result.setText("ID :"+getIntent().getStringExtra("id")+'\n'+"First Name :"+getIntent().getStringExtra("firstName")+'\n'+"Last Name :"+getIntent().getStringExtra("lastName")+'\n');
-        details=(Button)findViewById(R.id.button2);
+
+        details = (Button)findViewById(R.id.button2);
         details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 result.append("Gender:"+getIntent().getStringExtra("Gender")+'\n'+"Mobile:"+getIntent().getStringExtra("Mobile")+'\n');
                 result.append("Date of Birth:"+getIntent().getStringExtra("DateOfBirth"));
+
 
             }
         });
@@ -45,7 +47,7 @@ public class Result extends AppCompatActivity implements ILoginView {
 
     @Override
     public void showDetails(User data) {
-        result.append("Gender:"+data.getGender());
+
     }
 
 
