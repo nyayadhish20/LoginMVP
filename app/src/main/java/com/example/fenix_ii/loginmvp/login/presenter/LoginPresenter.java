@@ -152,7 +152,7 @@ public class LoginPresenter implements ILoginPresenter {
 
     public LoginPresenter(AppData appData, ServerData serverData, ILoginView view) {
         this.serverData = serverData;
-        this.appData = appData;
+        this.appData = AppData.getAppData();
         this.view = view;
 
     }

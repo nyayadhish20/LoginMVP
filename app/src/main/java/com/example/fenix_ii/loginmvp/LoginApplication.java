@@ -6,10 +6,14 @@ import com.example.fenix_ii.loginmvp.data.ServerData;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
+/*application => context
+    LoginActivity => context
+    DoosreActivities => context*/
     /**
      * Created by fenix-ii on 19/8/16.
      */
     public class LoginApplication extends Application {
+
         LoginApplication loginApplication;
         AppData appData;
         ServerData serverData;
@@ -24,7 +28,7 @@ import io.realm.RealmConfiguration;
         }
 
         private void initialize() {
-            appData.init();
+            appData.init(this);
             serverData.init();
         }
 

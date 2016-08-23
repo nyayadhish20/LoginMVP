@@ -13,21 +13,24 @@ public class AppData {
     private SharedPreferences loginpreff;
     private SharedPreferences.Editor preffEditor;
     private static final String DEFAULTPREFERENCES = "default";
-    static AppData appData;
-    public AppData(Context context) {
+    private static AppData appData;
+
+    private AppData(Context context) {
         loginpreff=context.getSharedPreferences(DEFAULTPREFERENCES, Context.MODE_PRIVATE);
         preffEditor= loginpreff.edit();
         preffEditor.commit();
     }
-    public AppData(){
-        appData= AppData.this;
+
+    public static AppData getAppData(){
+        return appData;
     }
-
-    public static void init(){
+    /*
+    * This is initialisting our appData singleton instance with the context of the LoginApplication
+    * */
+    public static void init(Context context){
         if(appData==null){
-            appData= new AppData();
+            appData= new AppData(context);
         }
-
     }
 
 
