@@ -2,6 +2,8 @@ package com.example.fenix_ii.loginmvp.login.presenter;
 
 
 
+
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -17,6 +19,9 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 
 /**
  * Created by fenix-ii on 9/8/16.
@@ -26,8 +31,10 @@ public class LoginPresenter implements ILoginPresenter {
     String url="http://api.v1.heallify.com/account/login";
     boolean savelogin;
     AppData appData;
-    ServerData serverData;//
+    ServerData serverData = new ServerData();
     private ILoginView view;
+    RealmConfiguration realmConfig;
+
 
     public boolean checkEmailIsEmpty(String email){
         if(!email.isEmpty())
@@ -51,7 +58,7 @@ public class LoginPresenter implements ILoginPresenter {
         map.put("email",email);
         map.put("password",passwd);
         serverData.APICallLogin(map);
-
+        // appData.init();
 
         CustomVolleyRequest jsonObjectRequest = new CustomVolleyRequest(Request.Method.POST,url,map,
                 new Response.Listener<JSONObject>() {
@@ -62,6 +69,7 @@ public class LoginPresenter implements ILoginPresenter {
                             if(success.equals("1")){
                                 JSONObject data = response.getJSONObject("data");
                                 User user = new Gson().fromJson(data.toString(),User.class);
+                                createRealmObject(data);
                                 view.onLoggedInSucces(user);
                                 view.showDetails(user);
 
@@ -72,7 +80,7 @@ public class LoginPresenter implements ILoginPresenter {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                                view.onFailToLogin(" BUG ");
+                            view.onFailToLogin(" BUG ");
                         }
 
 
@@ -88,13 +96,30 @@ public class LoginPresenter implements ILoginPresenter {
         );
         serverData.addToRequestQueue(jsonObjectRequest);
     }
+    public void createRealmObject(JSONObject userJSONOBject){
+
+        /*realmConfig = new RealmConfiguration().Builder(this).build();
+        Realm.setDefaultConfiguration(realmConfig);
+        Realm realm = Realm.getDefaultInstance();*/
+        Realm realm = Realm.getInstance(new RealmConfiguration.Builder(this).build());
+
+        realm.beginTransaction();
+        //User u = realm.createObject(User.class);
+        realm.createObjectFromJson(User.class,userJSONOBject);
+        realm.commitTransaction();
+
+        realm.beginTransaction();
+        view.onFailToLogin(realm.where(User.class).findFirst().toString());
+        realm.commitTransaction();
+    }
 
     public void showDetails(){
 
     }
+
     @Override
     public String getSavedEmail() {
-         return appData.getSavedEmail();
+        return appData.getSavedEmail();
     }
 
     @Override
@@ -129,9 +154,8 @@ public class LoginPresenter implements ILoginPresenter {
         this.serverData = serverData;
         this.appData = appData;
         this.view = view;
+
     }
-
-
 
 
 }

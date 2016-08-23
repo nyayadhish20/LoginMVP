@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 23
@@ -43,6 +43,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.7'
+  //  classpath 'io.realm:realm-gradle-plugin:1.1.1'
 }
 
 /*

@@ -24,6 +24,8 @@ import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class Login extends AppCompatActivity implements ILoginView {
 
@@ -41,12 +43,28 @@ public class Login extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         credentials= new HashMap<>();
-        mPresenter = new LoginPresenter(new AppData(this),new ServerData(this), this);
-        if (mPresenter.wasRememberMeChecked()) {
-            boxEmailAddres.setText(mPresenter.getSavedEmail());
-            boxPassword.setText(mPresenter.getSavedPassword());
-            chksave.setChecked(true);
+
+        Realm realm = Realm.getInstance(new RealmConfiguration.Builder(this).build());
+        User user = realm.where(User.class).findFirst();
+        if(user!=null){
+            Intent intent =new Intent(this ,Result.class);
+            intent.putExtra("id",user.getId());
+            intent.putExtra("firstName",user.getFirst_name());
+            intent.putExtra("lastName",user.getLast_name());
+            intent.putExtra("Gender",user.getGender());
+            intent.putExtra("Mobile",user.getMobile());
+            intent.putExtra("DateOfBirth",user.getDate_of_birth());
+            startActivity(intent);
+        }else{
+            mPresenter = new LoginPresenter(new AppData(this),new ServerData(this),this);
+            if (mPresenter.wasRememberMeChecked()) {
+                boxEmailAddres.setText(mPresenter.getSavedEmail());
+                boxPassword.setText(mPresenter.getSavedPassword());
+                chksave.setChecked(true);
+            }
         }
+
+
     }
 
     @OnClick(R.id.button)

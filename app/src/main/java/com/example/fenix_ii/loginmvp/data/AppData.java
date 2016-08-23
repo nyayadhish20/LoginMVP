@@ -13,13 +13,22 @@ public class AppData {
     private SharedPreferences loginpreff;
     private SharedPreferences.Editor preffEditor;
     private static final String DEFAULTPREFERENCES = "default";
-
+    static AppData appData;
     public AppData(Context context) {
         loginpreff=context.getSharedPreferences(DEFAULTPREFERENCES, Context.MODE_PRIVATE);
         preffEditor= loginpreff.edit();
         preffEditor.commit();
     }
+    public AppData(){
+        appData= AppData.this;
+    }
 
+    public static void init(){
+        if(appData==null){
+            appData= new AppData();
+        }
+
+    }
 
 
     public boolean getRememberMe(){

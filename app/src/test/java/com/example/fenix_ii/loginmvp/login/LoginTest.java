@@ -53,7 +53,7 @@ public class LoginTest {
        // when(appData.getSavedEmail()).thenReturn("savedemail@gmail.com");
         //when(appData.getSavedPassword()).thenReturn("password");
 
-        mPresenter = new LoginPresenter(appData,serverData,login);
+        mPresenter = new LoginPresenter(login);
     }
 
     @Test

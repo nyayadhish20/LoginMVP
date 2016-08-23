@@ -1,19 +1,14 @@
 package com.example.fenix_ii.loginmvp.data;
 
 import android.content.Context;
-import android.content.Intent;
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.example.fenix_ii.loginmvp.login.view.Result;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import com.example.fenix_ii.loginmvp.login.view.Result;
 
 import java.util.HashMap;
 
@@ -28,15 +23,23 @@ public class ServerData {
     private Context context;
     public String first_name,last_name,id;
 
+    public static ServerData serverData;
     Result resultObject = new Result(context);
     public ServerData(Context context){
-        this.context = context;
+          this.context=context;
     }
-
+    public ServerData(){}
 /*  *//*  public static synchronized ServerData getServerDataInstance() {
         return serverDataInstance;
     }
-*/
+*/  public static  ServerData getInstance(){
+    return serverData;
+        }
+    public static void init(){
+        if(serverData==null){
+            serverData=new ServerData();
+        }
+    }
     public RequestQueue getRequestQueue() {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(this.context);

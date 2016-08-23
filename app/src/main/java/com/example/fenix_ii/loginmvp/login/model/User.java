@@ -1,9 +1,11 @@
 package com.example.fenix_ii.loginmvp.login.model;
 
+import io.realm.RealmObject;
+
 /**
  * Created by fenix-ii on 9/8/16.
  */
-public class User {
+public class User  extends RealmObject{
     private String password;
 
     public String getPassword() {
@@ -128,5 +130,128 @@ public class User {
 
     public String getToken() {
         return token;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public void setMiddle_name(String middle_name) {
+        this.middle_name = middle_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setEmail_code(String email_code) {
+        this.email_code = email_code;
+    }
+
+    public void setMobile_code(String mobile_code) {
+        this.mobile_code = mobile_code;
+    }
+
+    public void setForget_code(String forget_code) {
+        this.forget_code = forget_code;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public void setCreator_id(String creator_id) {
+        this.creator_id = creator_id;
+    }
+
+    public void setEmail_verified(String email_verified) {
+        this.email_verified = email_verified;
+    }
+
+    public void setMobile_verified(String mobile_verified) {
+        this.mobile_verified = mobile_verified;
+    }
+
+    public void setAadhar_id(String aadhar_id) {
+        this.aadhar_id = aadhar_id;
+    }
+
+    public void setAadhar_verified(String aadhar_verified) {
+        this.aadhar_verified = aadhar_verified;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public void setProfile_gallery(String profile_gallery) {
+        this.profile_gallery = profile_gallery;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "password='" + password + '\'' +
+                ", id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", type='" + type + '\'' +
+                ", first_name='" + first_name + '\'' +
+                ", middle_name='" + middle_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", email_code='" + email_code + '\'' +
+                ", mobile_code='" + mobile_code + '\'' +
+                ", forget_code='" + forget_code + '\'' +
+                ", created_at='" + created_at + '\'' +
+                ", updated_at='" + updated_at + '\'' +
+                ", creator_id='" + creator_id + '\'' +
+                ", email_verified='" + email_verified + '\'' +
+                ", mobile_verified='" + mobile_verified + '\'' +
+                ", aadhar_id='" + aadhar_id + '\'' +
+                ", aadhar_verified='" + aadhar_verified + '\'' +
+                ", date_of_birth='" + date_of_birth + '\'' +
+                ", profile_gallery='" + profile_gallery + '\'' +
+                ", user_id='" + user_id + '\'' +
+                ", token='" + token + '\'' +
+                '}';
     }
 }

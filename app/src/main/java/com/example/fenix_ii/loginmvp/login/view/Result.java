@@ -10,9 +10,7 @@ import android.widget.TextView;
 import com.example.fenix_ii.loginmvp.R;
 import com.example.fenix_ii.loginmvp.login.model.User;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by fenix-ii on 17/8/16.
