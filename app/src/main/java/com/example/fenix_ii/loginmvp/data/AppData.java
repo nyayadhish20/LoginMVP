@@ -26,7 +26,7 @@ public class AppData {
     }
     /*
     * This is initialisting our appData singleton instance with the context of the LoginApplication
-    * */
+    */
     public static void init(Context context){
         if(appData==null){
             appData= new AppData(context);
