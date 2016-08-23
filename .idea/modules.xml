@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LoginMVB.iml" filepath="$PROJECT_DIR$/LoginMVB.iml" />
       <module fileurl="file://$PROJECT_DIR$/LoginMVP.iml" filepath="$PROJECT_DIR$/LoginMVP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
