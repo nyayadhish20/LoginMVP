@@ -1,6 +1,7 @@
 package com.example.fenix_ii.loginmvp.login.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fenix_ii.loginmvp.R;
+import com.example.fenix_ii.loginmvp.Search.SearchFetch;
 import com.example.fenix_ii.loginmvp.login.model.User;
 
 import butterknife.ButterKnife;
@@ -27,7 +29,7 @@ public class Result extends AppCompatActivity implements ILoginView {
 
         result=(TextView) findViewById(R.id.textView3);
         result.setText("ID :"+getIntent().getStringExtra("id")+'\n'+"First Name :"+getIntent().getStringExtra("firstName")+'\n'+"Last Name :"+getIntent().getStringExtra("lastName")+'\n');
-
+        final Intent i = new Intent(this,SearchFetch.class);
         details = (Button)findViewById(R.id.button2);
         details.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,7 @@ public class Result extends AppCompatActivity implements ILoginView {
                 result.append("Gender:"+getIntent().getStringExtra("Gender")+'\n'+"Mobile:"+getIntent().getStringExtra("Mobile")+'\n');
                 result.append("Date of Birth:"+getIntent().getStringExtra("DateOfBirth"));
 
+                startActivity(i);
 
             }
         });
@@ -82,6 +85,11 @@ public class Result extends AppCompatActivity implements ILoginView {
 
     @Override
     public void hideProgress() {
+
+    }
+
+    @Override
+    public void onClickDetails(User data) {
 
     }
 }

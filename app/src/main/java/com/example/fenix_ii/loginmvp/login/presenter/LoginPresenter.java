@@ -28,6 +28,7 @@ import io.realm.RealmConfiguration;
  */
 public class LoginPresenter implements ILoginPresenter {
     String username,password;
+    String listUrl="http://api.v1.heallify.com/autocomplete";
     String url="http://api.v1.heallify.com/account/login";
     boolean savelogin;
     //AppData appData;
@@ -50,6 +51,10 @@ public class LoginPresenter implements ILoginPresenter {
             return false;
 
     }
+
+
+
+
 
 
     @Override
@@ -106,7 +111,16 @@ public class LoginPresenter implements ILoginPresenter {
         view.onFailToLogin(realm.where(User.class).findFirst().toString());
         realm.commitTransaction();
     }
+    /*public void createRealmObject(JSONArray userJSONOBject){
 
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.(User.class,userJSONOBject);
+        realm.commitTransaction();
+        realm.beginTransaction();
+        view.onFailToLogin(realm.where(User.class).findFirst().toString());
+        realm.commitTransaction();
+    }*/
     public void showDetails(){
 
     }

@@ -14,5 +14,6 @@ public interface ILoginView {
     void onWrongEmail();
     void showProgressBar(String message);
     void hideProgress();
+    void onClickDetails(User data);
 
 }

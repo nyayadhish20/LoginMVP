@@ -153,4 +153,9 @@ public class Login extends AppCompatActivity implements ILoginView {
     public void hideProgress() {
 
     }
+
+    @Override
+    public void onClickDetails(User data) {
+
+    }
 }

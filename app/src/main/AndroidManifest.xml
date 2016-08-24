@@ -22,6 +22,7 @@
         <activity android:name=".login.view.Result">
 
         </activity>
+        <activity android:name=".Search.SearchFetch"></activity>
     </application>
 
 </manifest>
